@@ -2571,8 +2571,18 @@ def checkout_line_with_reservation_in_many_stocks(
 
     Reservation.objects.bulk_create(
         [
-            Reservation(checkout_line=checkout_line, stock=stocks[0], quantity_reserved=2, reserved_until=reserved_until),
-            Reservation(checkout_line=checkout_line, stock=stocks[1], quantity_reserved=1, reserved_until=reserved_until),
+            Reservation(
+                checkout_line=checkout_line,
+                stock=stocks[0],
+                quantity_reserved=2,
+                reserved_until=reserved_until,
+            ),
+            Reservation(
+                checkout_line=checkout_line,
+                stock=stocks[1],
+                quantity_reserved=1,
+                reserved_until=reserved_until,
+            ),
         ]
     )
 
@@ -2593,7 +2603,12 @@ def checkout_line_with_one_reservation(
 
     reserved_until = timezone.now() + timedelta(minutes=5)
 
-    Reservation.objects.create(checkout_line=checkout_line, stock=stocks[0], quantity_reserved=2, reserved_until=reserved_until)
+    Reservation.objects.create(
+        checkout_line=checkout_line,
+        stock=stocks[0],
+        quantity_reserved=2,
+        reserved_until=reserved_until,
+    )
 
     return checkout_line
 
