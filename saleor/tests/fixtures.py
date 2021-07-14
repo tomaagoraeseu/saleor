@@ -4317,6 +4317,7 @@ def warehouses_for_cc(address, shipping_zones):
                 slug="warehouse3",
                 email="warehouse3@example.com",
                 click_and_collect_option=WarehouseClickAndCollectOption.LOCAL_STOCK,
+                is_private=False,
             ),
             Warehouse(
                 address=address.get_copy(),
@@ -4324,6 +4325,7 @@ def warehouses_for_cc(address, shipping_zones):
                 slug="warehouse4",
                 email="warehouse4@example.com",
                 click_and_collect_option=WarehouseClickAndCollectOption.LOCAL_STOCK,
+                is_private=False,
             ),
         ]
     )
