@@ -4568,7 +4568,7 @@ type ProductUpdate {
 type ProductVariant implements Node & ObjectWithMetadata {
   id: ID!
   name: String!
-  sku: String!
+  sku: String
   product: Product!
   trackInventory: Boolean!
   weight: Weight
@@ -4597,7 +4597,7 @@ type ProductVariantBulkCreate {
 
 input ProductVariantBulkCreateInput {
   attributes: [BulkAttributeValueInput!]!
-  sku: String!
+  sku: String
   trackInventory: Boolean
   weight: WeightScalar
   stocks: [StockInput!]
