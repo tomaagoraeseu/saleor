@@ -287,7 +287,7 @@ class CheckoutCreate(ModelMutation, I18nMixin):
 
     @classmethod
     def clean_checkout_lines(
-        cls, site_settings, lines, country, channel
+        cls, lines, country, channel, site_settings
     ) -> Tuple[List[product_models.ProductVariant], List[int]]:
         variant_ids = [line["variant_id"] for line in lines]
         variants = cls.get_nodes_or_error(
@@ -357,10 +357,10 @@ class CheckoutCreate(ModelMutation, I18nMixin):
                 cleaned_input["variants"],
                 cleaned_input["quantities"],
             ) = cls.clean_checkout_lines(
-                info.context.site.settings,
                 lines,
                 country,
                 cleaned_input["channel"],
+                info.context.site.settings,
             )
 
         # Use authenticated user's email as default email
@@ -393,11 +393,11 @@ class CheckoutCreate(ModelMutation, I18nMixin):
         if variants and quantities:
             try:
                 add_variants_to_checkout(
-                    info.context.site.settings,
                     instance,
                     variants,
                     quantities,
                     channel.slug,
+                    site_settings=info.context.site.settings,
                 )
             except InsufficientStock as exc:
                 error = prepare_insufficient_stock_checkout_validation_error(exc)
@@ -525,7 +525,6 @@ class CheckoutLinesAdd(BaseMutation):
         if variants and quantities:
             try:
                 checkout = add_variants_to_checkout(
-                    site_settings,
                     checkout,
                     variants,
                     quantities,
@@ -533,6 +532,7 @@ class CheckoutLinesAdd(BaseMutation):
                     skip_stock_check=True,  # already checked by validate_checkout_lines
                     replace=replace,
                     replace_reservations=True,
+                    site_settings=site_settings,
                 )
             except ProductNotPublished as exc:
                 raise ValidationError(

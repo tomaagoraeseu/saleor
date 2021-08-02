@@ -525,12 +525,12 @@ def test_update_checkout_lines_with_reservations(
     )
 
     add_variants_to_checkout(
-        site_settings_with_reservations,
         checkout,
         variants,
         [2] * 10,
         channel_USD.slug,
         replace_reservations=True,
+        site_settings=site_settings_with_reservations,
     )
 
     with django_assert_num_queries(55):
