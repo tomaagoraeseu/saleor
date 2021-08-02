@@ -31,11 +31,7 @@ from ....payment import TransactionKind
 from ....payment.interface import GatewayResponse
 from ....plugins.manager import PluginsManager, get_plugins_manager
 from ....plugins.tests.sample_plugins import ActiveDummyPaymentGateway
-from ....product.models import (
-    ProductChannelListing,
-    ProductVariant,
-    ProductVariantChannelListing,
-)
+from ....product.models import ProductChannelListing, ProductVariant
 from ....shipping import models as shipping_models
 from ....warehouse.models import Reservation, Stock
 from ...tests.utils import assert_no_permission, get_graphql_content

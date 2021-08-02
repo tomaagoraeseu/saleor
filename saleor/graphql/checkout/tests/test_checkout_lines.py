@@ -1,6 +1,5 @@
 import datetime
 import uuid
-from decimal import Decimal
 from unittest import mock
 
 import graphene
@@ -9,13 +8,9 @@ from django.utils import timezone
 from ....checkout.error_codes import CheckoutErrorCode
 from ....checkout.fetch import fetch_checkout_info, fetch_checkout_lines
 from ....checkout.models import Checkout
-from ....checkout.utils import add_variants_to_checkout, calculate_checkout_quantity
+from ....checkout.utils import calculate_checkout_quantity
 from ....plugins.manager import get_plugins_manager
-from ....product.models import (
-    ProductChannelListing,
-    ProductVariant,
-    ProductVariantChannelListing,
-)
+from ....product.models import ProductChannelListing
 from ....warehouse.models import Reservation, Stock
 from ...tests.utils import get_graphql_content
 from ..mutations import update_checkout_shipping_method_if_invalid
