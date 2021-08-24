@@ -140,6 +140,7 @@ All notable, unreleased changes to this project will be documented in this file.
 - Add `page_type_id` when it's possible for `AttributeValue` translations webhook. - #7825 by @fowczarek
 - Optimize available quantity loader. - #7802 by @fowczarek
 - Configure a periodic task for removing empty allocations - #7885 by @fowczarek
+- Fix GraphQL federation support. - #7771 by @rafalp
 
 
 ### Breaking
