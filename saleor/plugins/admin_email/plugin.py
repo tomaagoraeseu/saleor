@@ -197,7 +197,7 @@ class AdminEmailPlugin(BasePlugin):
             sender_address=(
                 configuration["sender_address"] or settings.DEFAULT_FROM_EMAIL
             ),
-            use_tls=configuration["use_tls"] or settings.EMAIL_USE_TLS,
+            use_tls=configuration["use_tls"] or False, #settings.EMAIL_USE_TLS,
             use_ssl=configuration["use_ssl"] or settings.EMAIL_USE_SSL,
         )
 
