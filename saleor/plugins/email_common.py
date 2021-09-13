@@ -32,7 +32,7 @@ DEFAULT_TEMPLATE_HELP_TEXT = (
 )
 DEFAULT_SUBJECT_HELP_TEXT = "An email subject built with Handlebars template language."
 DEFAULT_EMAIL_VALUE = "DEFAULT"
-DEFAULT_EMAIL_TIMEOUT = 30
+DEFAULT_EMAIL_TIMEOUT = 5
 
 
 @dataclass
@@ -218,6 +218,8 @@ def send_email(
 
 
 def validate_email_config(config: EmailConfig):
+    logger.info(f"Validating email config {config}")
+
     email_backend = EmailBackend(
         host=config.host,
         port=config.port,
