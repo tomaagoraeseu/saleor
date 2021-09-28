@@ -135,6 +135,8 @@ class SispagGatewayPlugin(BasePlugin):
         user_password = configuration.get('user_password', None)
         use_sandbox = configuration.get('use_sandbox', False)
 
+        logger.info(f'validate_plugin_configuration...{configuration}')
+
         try:
             test_connection(
                 ApiConfig(
