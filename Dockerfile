@@ -2,7 +2,11 @@
 FROM python:3.9 as build-python
 
 RUN apt-get -y update \
-  && apt-get install -y gettext \
+  && apt-get install -y \
+  gettext \
+  libxml2-dev \
+  libxmlsec1-dev \
+  libxmlsec1-openssl \
   # Cleanup apt cache
   && apt-get clean \
   && rm -rf /var/lib/apt/lists/*
